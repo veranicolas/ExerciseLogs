@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Login } from './src/pages/Login/Login';
 
-function App(): JSX.Element {
+const App = () => {
 
   return (
-    <SafeAreaView>
-      
-    </SafeAreaView>
+    <Login />
   );
 }
 
-const styles = StyleSheet.create({});
 
 export default App;
