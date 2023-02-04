@@ -28,4 +28,4 @@ This React Native App uses the normal React Native CLI for running and building 
 
 ## Notes
 
-* If you have an idea for a pull request, please [create an issue](https://github.com/veranicolas/PanaTracker/issues/new) so we can discuss it first. I don't want you to waste your time creating a feature that I don't want to add for some reason.
+* If you have an idea for a pull request, please [create an issue](https://github.com/veranicolas/GymLogs/issues/new) so we can discuss it first. I don't want you to waste your time creating a feature that I don't want to add for some reason.
