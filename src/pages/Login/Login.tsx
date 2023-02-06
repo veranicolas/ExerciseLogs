@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
 
 const Login = () =>{
 
@@ -13,7 +14,8 @@ const Login = () =>{
       <View style={styles.mainContainer}>
         <View style={styles.welcomeBox}>
           <Text style={styles.welcomeTitle}>Welcome to Exercise Logs</Text>
-          <Text style={{color:'black'}}>Start tracking your lift records today!</Text>
+          <Text style={{color:'black', marginBottom:20}}>Start tracking your lift records today!</Text>
+          <GoogleSigninButton size={GoogleSigninButton.Size.Standard} color={GoogleSigninButton.Color.Dark}/>
         </View>
         <StatusBar translucent backgroundColor='transparent'/>
       </View>

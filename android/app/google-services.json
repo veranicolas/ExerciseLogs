@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "243550788109",
+    "project_id": "gymlogs-c46e4",
+    "storage_bucket": "gymlogs-c46e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243550788109:android:df2bab04cf6f145a469344",
+        "android_client_info": {
+          "package_name": "com.exerciselogs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243550788109-psv6hqfh1c01h2rhmph0n3ala4925dni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc8Ug6jFpnBYx-npsotNqHSlz057kHFcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243550788109-psv6hqfh1c01h2rhmph0n3ala4925dni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
