@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -6,20 +6,33 @@ import {
   Text,
   View,
 } from 'react-native';
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
+import { GoogleSigninButton, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin'
 
 const Login = () =>{
 
-    return(
-      <View style={styles.mainContainer}>
-        <View style={styles.welcomeBox}>
-          <Text style={styles.welcomeTitle}>Welcome to Exercise Logs</Text>
-          <Text style={{color:'black', marginBottom:20}}>Start tracking your lift records today!</Text>
-          <GoogleSigninButton size={GoogleSigninButton.Size.Standard} color={GoogleSigninButton.Color.Dark}/>
-        </View>
-        <StatusBar translucent backgroundColor='transparent'/>
+  const [userInfo, setUserInfo] = useState({})
+
+  const signIn = async () =>{
+    try{
+      await GoogleSignin.hasPlayServices()
+      const userData = await GoogleSignin.signIn()
+      setUserInfo(userData)
+      console.log(userData)
+    } catch(error){
+      console.log(error)
+    }
+  }
+
+  return(
+    <View style={styles.mainContainer}>
+      <View style={styles.welcomeBox}>
+        <Text style={styles.welcomeTitle}>Welcome to Exercise Logs</Text>
+        <Text style={{color:'black', marginBottom:20}}>Start tracking your lift records today!</Text>
+        <GoogleSigninButton onPress={signIn} size={GoogleSigninButton.Size.Standard} color={GoogleSigninButton.Color.Dark}/>
       </View>
-    )
+      <StatusBar translucent backgroundColor='transparent'/>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
