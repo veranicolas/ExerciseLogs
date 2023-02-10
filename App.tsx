@@ -1,14 +1,14 @@
 import React from 'react';
-import { Login } from './src/pages/Login/Login';
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { MainNavigator } from './src/routes/Navigators';
 
 const App = () => {
 
   GoogleSignin.configure()
 
   return (
-    <Login />
+    <MainNavigator />
   );
 }
 

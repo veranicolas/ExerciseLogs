@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -7,17 +7,31 @@ import {
   View,
 } from 'react-native';
 import { GoogleSigninButton, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin'
+import { LoginProps } from '../../types/NavigationTypes';
 
-const Login = () =>{
+const Login = ({navigation}:LoginProps) =>{
 
   const [userInfo, setUserInfo] = useState({})
+
+  useEffect(()=>{
+    const isSignedIn = async () => {
+      const response = await GoogleSignin.isSignedIn();
+      if(response){
+        navigation.navigate('Home')
+      } else {
+        console.log('Not logged in')
+      }
+    };
+
+    isSignedIn()
+  },[])
 
   const signIn = async () =>{
     try{
       await GoogleSignin.hasPlayServices()
       const userData = await GoogleSignin.signIn()
       setUserInfo(userData)
-      console.log(userData)
+      navigation.navigate('Home')
     } catch(error){
       console.log(error)
     }
