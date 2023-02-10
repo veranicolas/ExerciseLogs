@@ -34,6 +34,7 @@ const Login = ({navigation}:LoginProps) =>{
     }
   }
 
+  //TODO - REDO this UI, looks really ugly
   return(
     <View style={styles.mainContainer}>
       <View style={styles.welcomeBox}>

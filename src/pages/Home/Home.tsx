@@ -21,7 +21,6 @@ const UserInfo = ({user, navigation}:any) =>{
   const onPressLogout = async () => {
     try {
       await GoogleSignin.signOut();
-      // Remember to remove the user from your app's state as well
       navigation.navigate('Login')
     } catch (error) {
       console.error(error);
