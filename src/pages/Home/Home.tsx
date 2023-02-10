@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Image,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { StatusBar, StyleSheet, Text, View, Image, Button } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { HomeProps } from '../../types/NavigationTypes';
 

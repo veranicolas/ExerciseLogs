@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import { GoogleSigninButton, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin'
+import React, { useEffect } from 'react';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin'
 import { LoginProps } from '../../types/NavigationTypes';
 
 const Login = ({navigation}:LoginProps) =>{
