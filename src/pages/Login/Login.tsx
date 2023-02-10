@@ -11,8 +11,6 @@ import { LoginProps } from '../../types/NavigationTypes';
 
 const Login = ({navigation}:LoginProps) =>{
 
-  const [userInfo, setUserInfo] = useState({})
-
   useEffect(()=>{
     const isSignedIn = async () => {
       const response = await GoogleSignin.isSignedIn();
@@ -29,8 +27,7 @@ const Login = ({navigation}:LoginProps) =>{
   const signIn = async () =>{
     try{
       await GoogleSignin.hasPlayServices()
-      const userData = await GoogleSignin.signIn()
-      setUserInfo(userData)
+      await GoogleSignin.signIn()
       navigation.navigate('Home')
     } catch(error){
       console.log(error)
