@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, Image, Button, Dimensions } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { HomeProps } from '../../types/NavigationTypes';
 
-const UserInfo = ({user, navigation}:any) =>{
+const Header = ({user}:any) =>{
 
   const { photo, givenName, familyName } = user
+
+  return(
+    <View style={{height:80, width:Dimensions.get('screen').width, flexDirection:'row', padding:5, borderBottomWidth:1, borderColor:'grey'}}>
+      <Image 
+        source={{uri:photo}} 
+        style={{height:65, width:65, borderRadius:50}}
+      />
+      <Text style={{fontSize:18, textAlignVertical:'center', color:'black', marginLeft:20}}>{givenName} {familyName}</Text>
+    </View>
+  )
+}
+
+const UserInfo = ({user, navigation}:any) =>{
 
   useEffect(()=>{
     console.log(user)
@@ -21,13 +34,9 @@ const UserInfo = ({user, navigation}:any) =>{
   };
 
   return(
-    <View style={{width:350, height:400, backgroundColor:'white'}}>
-      <Image 
-        source={{uri:photo}} 
-        style={{height:200, width:200}}
-      />
-      <Text>{givenName} {familyName}</Text>
-      <StatusBar translucent backgroundColor='transparent'/>
+    <View style={{flex:1, padding:StatusBar.currentHeight, backgroundColor:'white', justifyContent:'space-between'}}>
+      <Header user={user}/>
+      <StatusBar translucent backgroundColor='grey' barStyle={'dark-content'}/>
       <Button title='Logout' onPress={onPressLogout}/>
     </View>
   )
