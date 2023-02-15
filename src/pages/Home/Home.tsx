@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet, Text, View, Image, Button, Dimensions } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, Image, Button, Dimensions, NativeModules, TextInput } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { HomeProps } from '../../types/NavigationTypes';
+import { Header } from '../../components/Header';
 
-const Header = ({user}:any) =>{
+const DataForm = () =>{
 
-  const { photo, givenName, familyName } = user
+  const locale = NativeModules.I18nManager.localeIdentifier // Add this line in the beggining to set the global language of the app
+  console.log(locale)
 
   return(
-    <View style={{height:80, width:Dimensions.get('screen').width, flexDirection:'row', padding:5, borderBottomWidth:1, borderColor:'grey'}}>
-      <Image 
-        source={{uri:photo}} 
-        style={{height:65, width:65, borderRadius:50}}
+    <View style={{padding:20, height:Dimensions.get('screen').height * 0.73}}>
+      <TextInput
+        placeholder='Exercise name'
+        style={{borderColor:'grey', borderWidth:1, borderRadius:8}}
       />
-      <Text style={{fontSize:18, textAlignVertical:'center', color:'black', marginLeft:20}}>{givenName} {familyName}</Text>
     </View>
   )
 }
@@ -37,6 +38,7 @@ const UserInfo = ({user, navigation}:any) =>{
     <View style={{flex:1, padding:StatusBar.currentHeight, backgroundColor:'white', justifyContent:'space-between'}}>
       <Header user={user}/>
       <StatusBar translucent backgroundColor='grey' barStyle={'dark-content'}/>
+      <DataForm />
       <Button title='Logout' onPress={onPressLogout}/>
     </View>
   )
