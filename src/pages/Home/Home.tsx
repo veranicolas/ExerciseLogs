@@ -3,21 +3,7 @@ import { StatusBar, StyleSheet, Text, View, Image, Button, Dimensions, NativeMod
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { HomeProps } from '../../types/NavigationTypes';
 import { Header } from '../../components/Header';
-
-const DataForm = () =>{
-
-  const locale = NativeModules.I18nManager.localeIdentifier // Add this line in the beggining to set the global language of the app
-  console.log(locale)
-
-  return(
-    <View style={{padding:20, height:Dimensions.get('screen').height * 0.73}}>
-      <TextInput
-        placeholder='Exercise name'
-        style={{borderColor:'grey', borderWidth:1, borderRadius:8}}
-      />
-    </View>
-  )
-}
+import { ExerciseForm } from '../ExerciseForm/ExerciseForm';
 
 const UserInfo = ({user, navigation}:any) =>{
 
@@ -38,7 +24,7 @@ const UserInfo = ({user, navigation}:any) =>{
     <View style={{flex:1, padding:StatusBar.currentHeight, backgroundColor:'white', justifyContent:'space-between'}}>
       <Header user={user}/>
       <StatusBar translucent backgroundColor='grey' barStyle={'dark-content'}/>
-      <DataForm />
+      <ExerciseForm />
       <Button title='Logout' onPress={onPressLogout}/>
     </View>
   )
