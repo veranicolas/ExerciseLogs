@@ -45,8 +45,9 @@ const Home = ({navigation}:HomeProps) =>{
   
   return(
     <View style={styles.mainContainer}>
+      
       {
-        user !== undefined ? <UserInfo user={user.user} navigation={navigation} /> : <Text>Loading...</Text>
+        user !== undefined ? <UserInfo user={user.user} navigation={navigation} /> : <Text style={styles.loadingText}>Loading...</Text>
       }
     </View>
   )
@@ -60,6 +61,14 @@ const styles = StyleSheet.create({
     width:'100%', 
     justifyContent:'center', 
     alignItems:'center'
+  },
+  loadingText:{
+    height:70, 
+    width:150, 
+    backgroundColor:'white', 
+    textAlign:'center', 
+    textAlignVertical:'center', 
+    borderRadius:15
   }
 });
 

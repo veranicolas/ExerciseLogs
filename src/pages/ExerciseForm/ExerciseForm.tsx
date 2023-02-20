@@ -1,10 +1,19 @@
 import React, {useState} from 'react'
-import { View, NativeModules, TextInput, Dimensions, Text, StyleSheet } from 'react-native'
+import { View, NativeModules, TextInput, Dimensions, StyleSheet } from 'react-native'
 import { useForm, Controller } from 'react-hook-form'
 
 import { CustomButton } from '../../components/CustomButton'
+import { CustomPicker } from '../../components/CustomPicker'
 
 const ExerciseForm = () =>{
+
+    const [selectedValue, setSelectedValue] = useState('')
+
+    // const [items, setItems] = useState([
+    //     {label: 'Upper', value: 'upper'},
+    //     {label: 'Middle', value: 'middle'},
+    //     {label: 'Lower', value: 'lower'}
+    // ]);
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
@@ -18,7 +27,10 @@ const ExerciseForm = () =>{
     const locale = NativeModules.I18nManager.localeIdentifier // Add this line in the beggining to set the global language of the app
   
     const onHandleSubmit = (data:any) =>{
-      console.log('Data submitted', data)
+        // try pass the picker value creating a new object with the two values
+        const finalData = data
+        finalData.type = selectedValue
+        console.log(finalData)
     }
   
     return(
@@ -39,31 +51,15 @@ const ExerciseForm = () =>{
             )}
             name="exercise"
         />
-        <Controller
-            control={control}
-            rules={{
-                required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-                style={errors.type ? styles.inputErrors : styles.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                placeholder='Type of exercise'
-            />
-            )}
-            name="type"
-        />
-    
+        <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue} label="Type" />
         <CustomButton title="Submit" handlePress={handleSubmit(onHandleSubmit)}/>
       </View>
     )
 }
 
 const styles = StyleSheet.create({
-    input:{borderColor:'grey', borderWidth:1, borderRadius:8, marginVertical:10},
-    inputErrors:{borderColor:'red', borderWidth:1, borderRadius:8, marginVertical:10},
+    input:{borderColor:'grey', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10},
+    inputErrors:{borderColor:'red', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10},
 })
 
 export { ExerciseForm }
