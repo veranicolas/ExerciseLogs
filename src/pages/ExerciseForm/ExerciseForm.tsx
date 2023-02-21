@@ -7,7 +7,8 @@ import { CustomPicker } from '../../components/CustomPicker'
 
 const ExerciseForm = () =>{
 
-    const [selectedValue, setSelectedValue] = useState('')
+    const [selectedValue, setSelectedValue] = useState('placeholder')
+    const [pickerError, setPickerError] = useState(false)
 
     // const [items, setItems] = useState([
     //     {label: 'Upper', value: 'upper'},
@@ -26,14 +27,19 @@ const ExerciseForm = () =>{
   
     const onHandleSubmit = (data:any) =>{
         // try pass the picker value creating a new object with the two values
-        const finalData = data
-        finalData.type = selectedValue
-        console.log(finalData)
-        reset()
+        if(selectedValue == 'placeholder'){
+            setPickerError(true)
+        } else {
+            const finalData = data
+            finalData.type = selectedValue
+            console.log(finalData)
+            setPickerError(false)
+            reset()
+        }
     }
   
     return(
-      <View style={{paddingHorizontal:20, height:Dimensions.get('screen').height * 0.80, justifyContent:'space-between'}}>
+      <View style={{paddingHorizontal:20, height:Dimensions.get('screen').height * 0.80, justifyContent:'space-between', backgroundColor:'white'}}>
         <View>
             <Controller
                 control={control}
@@ -85,7 +91,7 @@ const ExerciseForm = () =>{
                 )}
                 name="amount"
             />
-            <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue} label="Type" />
+            <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue} label="Type" error={pickerError}/>
         </View>
         
         <CustomButton title="Submit" handlePress={handleSubmit(onHandleSubmit)}/>
@@ -94,8 +100,8 @@ const ExerciseForm = () =>{
 }
 
 const styles = StyleSheet.create({
-    input:{borderColor:'grey', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10},
-    inputErrors:{borderColor:'red', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10},
+    input:{borderColor:'grey', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10, color:'black'},
+    inputErrors:{borderColor:'red', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10, color:'black'},
 })
 
 export { ExerciseForm }
