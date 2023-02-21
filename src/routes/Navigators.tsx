@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { Login } from "../pages/Login/Login";
 import { Home } from "../pages/Home/Home";
+import { Profile } from "../pages/Profile/Profile";
 
 const MainNavigator = () =>{
 
@@ -20,6 +21,7 @@ const MainNavigator = () =>{
                         headerShown:false
                     }}    
                 />
+                <Stack.Screen name='Profile' component={Profile} />
             </Stack.Navigator>
         </NavigationContainer>
     )

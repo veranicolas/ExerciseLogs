@@ -11,21 +11,12 @@ const UserInfo = ({user, navigation}:any) =>{
     console.log(user)
   }, [])
 
-  const onPressLogout = async () => {
-    try {
-      await GoogleSignin.signOut();
-      navigation.navigate('Login')
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return(
     <View style={{flex:1, padding:StatusBar.currentHeight, backgroundColor:'white', justifyContent:'space-between'}}>
-      <Header user={user}/>
+      <Header navigation={navigation} user={user}/>
       <StatusBar translucent backgroundColor='grey' barStyle={'dark-content'}/>
       <ExerciseForm />
-      <Button title='Logout' onPress={onPressLogout}/>
+      
     </View>
   )
 }
@@ -45,7 +36,6 @@ const Home = ({navigation}:HomeProps) =>{
   
   return(
     <View style={styles.mainContainer}>
-      
       {
         user !== undefined ? <UserInfo user={user.user} navigation={navigation} /> : <Text style={styles.loadingText}>Loading...</Text>
       }
