@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, NativeModules} from 'react-native';
 import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin'
 import { LoginProps } from '../../types/NavigationTypes';
 
 const Login = ({navigation}:LoginProps) =>{
+
+  const locale = NativeModules.I18nManager.localeIdentifier // Add this line in the beggining to set the global language of the app
 
   useEffect(()=>{
     const isSignedIn = async () => {

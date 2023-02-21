@@ -8,7 +8,7 @@ const CustomPicker = ({selectedValue, setSelectedValue, label}:any) =>{
     // make the items values be passed by props so that the component becomes reutilizable
 
     return(
-        <View style={{borderWidth:1, borderColor:'grey', padding:5, borderRadius:10, marginBottom:10}}>
+        <View style={{borderWidth:1, borderColor:'grey', padding:5, borderRadius:10, marginVertical:10}}>
             <Text>{label}</Text>
             <Picker
                 selectedValue={selectedValue}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, NativeModules, TextInput, Dimensions, StyleSheet } from 'react-native'
+import { View, TextInput, Dimensions, StyleSheet } from 'react-native'
 import { useForm, Controller } from 'react-hook-form'
 
 import { CustomButton } from '../../components/CustomButton'
@@ -15,43 +15,79 @@ const ExerciseForm = () =>{
     //     {label: 'Lower', value: 'lower'}
     // ]);
 
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
           exercise: '',
           type: '',
-          amount:0,
-          reps:0
+          amount:'',
+          reps:''
         }
-      });
-  
-    const locale = NativeModules.I18nManager.localeIdentifier // Add this line in the beggining to set the global language of the app
+    });
   
     const onHandleSubmit = (data:any) =>{
         // try pass the picker value creating a new object with the two values
         const finalData = data
         finalData.type = selectedValue
         console.log(finalData)
+        reset()
     }
   
     return(
-      <View style={{padding:20, height:Dimensions.get('screen').height * 0.73, justifyContent:'flex-start'}}>
-        <Controller
-            control={control}
-            rules={{
-                required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-                placeholder='Exercise'
-                style={errors.exercise ? styles.inputErrors : styles.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
+      <View style={{padding:20, height:Dimensions.get('screen').height * 0.73, justifyContent:'space-between'}}>
+        <View>
+            <Controller
+                control={control}
+                rules={{
+                    required: true,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                    placeholder='Exercise'
+                    style={errors.exercise ? styles.inputErrors : styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                />
+                )}
+                name="exercise"
             />
-            )}
-            name="exercise"
-        />
-        <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue} label="Type" />
+            <Controller
+                control={control}
+                rules={{
+                    required: true,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                    keyboardType='numeric'
+                    placeholder='Reps'
+                    style={errors.reps ? styles.inputErrors : styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value.toString()}
+                />
+                )}
+                name="reps"
+            />
+            <Controller
+                control={control}
+                rules={{
+                    required: true,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                    keyboardType='numeric'
+                    placeholder='Amount'
+                    style={errors.reps ? styles.inputErrors : styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value.toString()}
+                />
+                )}
+                name="amount"
+            />
+            <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue} label="Type" />
+        </View>
+        
         <CustomButton title="Submit" handlePress={handleSubmit(onHandleSubmit)}/>
       </View>
     )
