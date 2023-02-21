@@ -33,7 +33,7 @@ const ExerciseForm = () =>{
     }
   
     return(
-      <View style={{paddingHorizontal:20, height:Dimensions.get('screen').height * 0.73, justifyContent:'space-between'}}>
+      <View style={{paddingHorizontal:20, height:Dimensions.get('screen').height * 0.80, justifyContent:'space-between'}}>
         <View>
             <Controller
                 control={control}

@@ -1,12 +1,17 @@
 import React from "react";
 
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { Text, Pressable, StyleSheet } from 'react-native'
 
-const CustomButton = ({title, handlePress}:any) =>{
+type Props = {
+    title:string,
+    handlePress: ()=> void
+}
+
+const CustomButton = ({title, handlePress}:Props) =>{
 
     return(
         <Pressable onPress={handlePress} android_ripple={{color:'white'}} style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>{title}</Text>
+            <Text style={styles.buttonText}>{title.toUpperCase()}</Text>
         </Pressable>
     )
 }
@@ -23,7 +28,8 @@ const styles = StyleSheet.create({
         textAlignVertical:'center', 
         textAlign:'center', 
         height:40,
-        color:'white'
+        color:'white',
+        fontWeight:'bold'
     }
 })
 
