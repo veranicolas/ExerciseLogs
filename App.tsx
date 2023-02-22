@@ -1,18 +1,22 @@
 import React from 'react';
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { MainNavigator } from './src/routes/Navigators';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
+import { ToastProvider } from 'react-native-toast-notifications';
+
+import { MainNavigator } from './src/routes/Navigators';
 
 const App = () => {
 
   GoogleSignin.configure()
 
   return (
-    <Provider store={store}>
-      <MainNavigator />
-    </Provider>
+    <ToastProvider>
+      <Provider store={store}>
+        <MainNavigator />
+      </Provider>
+    </ToastProvider>
   );
 }
 

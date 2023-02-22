@@ -4,11 +4,13 @@ import { useForm, Controller } from 'react-hook-form'
 
 import { CustomButton } from '../../components/CustomButton'
 import { CustomPicker } from '../../components/CustomPicker'
+import { useToast } from 'react-native-toast-notifications'
 
-const ExerciseForm = () =>{
+const ExerciseForm = ({navigation}:any) =>{
 
     const [selectedValue, setSelectedValue] = useState('placeholder')
     const [pickerError, setPickerError] = useState(false)
+    const toast = useToast()
 
     // const [items, setItems] = useState([
     //     {label: 'Upper', value: 'upper'},
@@ -34,6 +36,13 @@ const ExerciseForm = () =>{
             finalData.type = selectedValue
             console.log(finalData)
             setPickerError(false)
+            toast.show("Exercise log added!", {
+                type: "success",
+                placement: "bottom",
+                duration: 4000,
+                animationType: "slide-in",
+            });
+            navigation.navigate('Home')
             reset()
         }
     }

@@ -8,7 +8,6 @@ import { HomeProps } from '../../types/NavigationTypes';
 import { Header } from '../../components/Header';
 import { CustomButton } from '../../components/CustomButton';
 
-import { AppDispatch } from '../../redux/store';
 import { loginUser } from '../../redux/slices/user';
 
 const Home = ({navigation, user}:any) =>{
