@@ -1,24 +1,26 @@
 import React from 'react';
 import { StatusBar, StyleSheet, Text, View, Image, Button, Dimensions, Pressable } from 'react-native';
 
-const Header = ({user, navigation}:any) =>{
+import { useSelector } from 'react-redux'
 
-    const { photo } = user
+const Header = ({navigation}:any) =>{
 
-    const handleRedirectProfile = () =>{
-      navigation.navigate('Profile')
-    }
+  const { photo } = useSelector((state:any)=> state.user.value)
+
+  const handleRedirectProfile = () =>{
+    navigation.navigate('Profile')
+  }
   
-    return(
-      <View style={styles.headerContainer}>
-        <Pressable onPress={handleRedirectProfile}>
-          <Image 
-            source={{uri:photo}} 
-            style={{height:40, width:40, borderRadius:50}}
-          />
-        </Pressable>
-      </View>
-    )
+  return(
+    <View style={styles.headerContainer}>
+      <Pressable onPress={handleRedirectProfile}>
+        <Image 
+          source={{uri:photo}} 
+          style={{height:40, width:40, borderRadius:50}}
+        />
+      </Pressable>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
