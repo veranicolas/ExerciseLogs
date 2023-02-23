@@ -35,6 +35,7 @@ local.properties
 !debug.keystore
 
 UserStories.txt
+.env
 
 
 # node.js
