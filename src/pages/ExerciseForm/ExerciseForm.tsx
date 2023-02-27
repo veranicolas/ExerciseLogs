@@ -5,9 +5,12 @@ import { useForm, Controller } from 'react-hook-form'
 import { CustomButton } from '../../components/CustomButton'
 import { CustomPicker } from '../../components/CustomPicker'
 import { useToast } from 'react-native-toast-notifications'
+import { createExerciseLog } from '../../services/exercises'
+import { useSelector } from 'react-redux'
 
 const ExerciseForm = ({navigation}:any) =>{
 
+    const { id } = useSelector((state:any)=> state.user.value)
     const [selectedValue, setSelectedValue] = useState('placeholder')
     const [pickerError, setPickerError] = useState(false)
     const toast = useToast()
@@ -20,21 +23,23 @@ const ExerciseForm = ({navigation}:any) =>{
 
     const { control, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
-          exercise: '',
-          type: '',
-          amount:'',
+          name: '',
+          area: '',
+          value:'',
           reps:''
         }
     });
   
-    const onHandleSubmit = (data:any) =>{
+    const onHandleSubmit = async (data:any) =>{
         // try pass the picker value creating a new object with the two values
         if(selectedValue == 'placeholder'){
             setPickerError(true)
         } else {
             const finalData = data
-            finalData.type = selectedValue
+            finalData.area = selectedValue
+            finalData.userId = id
             console.log(finalData)
+            await createExerciseLog(finalData)
             setPickerError(false)
             toast.show("Exercise log added!", {
                 type: "success",
@@ -58,13 +63,13 @@ const ExerciseForm = ({navigation}:any) =>{
                 render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                     placeholder='Exercise'
-                    style={errors.exercise ? styles.inputErrors : styles.input}
+                    style={errors.name ? styles.inputErrors : styles.input}
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value}
                 />
                 )}
-                name="exercise"
+                name="name"
             />
             <Controller
                 control={control}
@@ -92,15 +97,15 @@ const ExerciseForm = ({navigation}:any) =>{
                 <TextInput
                     keyboardType='numeric'
                     placeholder='Amount'
-                    style={errors.reps ? styles.inputErrors : styles.input}
+                    style={errors.value ? styles.inputErrors : styles.input}
                     onBlur={onBlur}
                     onChangeText={onChange}
                     value={value.toString()}
                 />
                 )}
-                name="amount"
+                name="value"
             />
-            <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue} label="Type" error={pickerError}/>
+            <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue} label="Area" error={pickerError}/>
         </View>
         
         <CustomButton title="Submit" handlePress={handleSubmit(onHandleSubmit)}/>
