@@ -25,9 +25,14 @@ const createExerciseLog = async (data:Exercise) =>{
     }
 }
 
-const getAllExercisesFromUser = async () =>{
+const getAllExercisesFromUser = async (userID:string) =>{
 
-    return {}
+    try{
+        const response = await axios.get(`${API_URL}exercise/${userID}`)
+        return response
+    } catch(error){
+        console.log(error)
+    }
 }
 
 export { getAllExercisesFromUser, createExerciseLog, deleteEntryFromUser }
