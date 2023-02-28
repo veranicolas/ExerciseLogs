@@ -19,7 +19,7 @@ const createExerciseLog = async (data:Exercise) =>{
     
     try{
         const response = await axios.post(`${API_URL}exercise`, data)
-        console.log(response)
+        console.log(response.data)
     } catch(error:AxiosError | any){
         console.log(error)
     }

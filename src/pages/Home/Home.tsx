@@ -12,17 +12,22 @@ import { loginUser } from '../../redux/slices/user';
 
 const Home = ({navigation, user}:any) =>{
 
-  const handleNavigation = () =>{
+  const handleNavigationExerciseForm = () =>{
     navigation.navigate('ExerciseForm')
+  }
+
+  const handleExerciseListNavigation = () =>{
+    navigation.navigate('ExerciseList')
   }
 
   return(
     <View style={{flex:1, padding:StatusBar.currentHeight, backgroundColor:'white', justifyContent:'flex-start'}}>
         <Header navigation={navigation} user={user}/>
-        <View style={{padding:20, height:300, justifyContent:'flex-start'}}>
+        <View style={{padding:20, height:300, justifyContent:'space-between'}}>
           <Text style={{fontSize:58, fontWeight:'bold', color:'black'}}>Hello!</Text>
           <Text style={{color:'black', marginBottom:30}}>This is the homepage</Text>
-          <CustomButton title="Add exercise log" handlePress={handleNavigation}/>
+          <CustomButton title="Add exercise log" handlePress={handleNavigationExerciseForm}/>
+          <CustomButton title="View all exercises" handlePress={handleExerciseListNavigation} />
         </View>
         
         <StatusBar translucent backgroundColor='transparent' barStyle={'dark-content'}/>

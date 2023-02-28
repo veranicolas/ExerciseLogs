@@ -6,6 +6,7 @@ import { Login } from "../pages/Login/Login";
 import { Homepage } from "../pages/Home/Home";
 import { Profile } from "../pages/Profile/Profile";
 import { ExerciseForm } from "../pages/ExerciseForm/ExerciseForm";
+import { ExerciseList } from "../pages/ExerciseList/ExerciseList";
 
 const MainNavigator = () =>{
 
@@ -28,10 +29,17 @@ const MainNavigator = () =>{
                         headerShown:false
                     }}    
                 />
-                <Stack.Screen name='Profile' component={Profile} />
+                <Stack.Screen 
+                    name='Profile' 
+                    component={Profile} 
+                />
                 <Stack.Screen 
                     name='ExerciseForm' 
                     component={ExerciseForm}   
+                />
+                <Stack.Screen
+                    name='ExerciseList'
+                    component={ExerciseList}
                 />
             </Stack.Navigator>
         </NavigationContainer>
