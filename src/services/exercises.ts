@@ -29,7 +29,7 @@ const getAllExercisesFromUser = async (userID:string) =>{
 
     try{
         const response = await axios.get(`${API_URL}exercise/${userID}`)
-        return response
+        return response.data.exercises
     } catch(error){
         console.log(error)
     }
