@@ -6,6 +6,15 @@ import { View, StyleSheet, Text, FlatList} from "react-native";
 import { getAllExercisesFromUser } from "../../services/exercises";
 import { useState } from "react";
 
+const ExerciseItem = ({item}:any) =>{
+
+    return(
+        <View style={{height:100, width:300, alignSelf:'center', borderWidth:1, borderColor:'grey', borderRadius:12, padding:40, marginBottom:10}}>
+            <Text>{item.name}</Text>
+        </View>
+    )
+}
+
 const ExerciseList = () =>{
 
     // TODO Implement some slices for storing the data in the state. Also add some styles to it.
@@ -28,28 +37,32 @@ const ExerciseList = () =>{
 
     return(
         <View style={styles.mainContainer}>
-            <Text>This is the exercise list</Text>
-            <FlatList
-                data={exercisesData}
-                renderItem={({item}:any)=>
-                    <View style={{height:100, width:300, alignSelf:'center'}}>
-                        <Text>{item.name}</Text>
-                    </View>
-                }
-                keyExtractor={(item, index)=> { return (Math.random()).toString()}}
-            />
+            <View style={{borderWidth:1, borderColor:'grey', height:'10%', width:300, marginBottom:20}}>
+                <Text>This will be the sorting filters</Text>
+            </View>
+            <View style={{height:'80%'}}>
+                <FlatList
+                    data={exercisesData}
+                    renderItem={({item}:any)=>
+                        <ExerciseItem item={item}/>
+                    }
+                    keyExtractor={(item, index)=> { return (Math.random()).toString()}}
+                />
+            </View>
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     mainContainer:{
-        flex:1, 
+        height:'100%',
+        width:'100%',
         backgroundColor:'white', 
-        height:'100%', 
-        width:'100%', 
-        justifyContent:'center', 
-        alignItems:'center'
+        paddingVertical:30, 
+        flexDirection:'column',
+        justifyContent:'flex-start', 
+        alignItems:'center',
       }
 })
 

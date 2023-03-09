@@ -34,7 +34,6 @@ local.properties
 *.keystore
 !debug.keystore
 
-UserStories.txt
 .env
 
 
