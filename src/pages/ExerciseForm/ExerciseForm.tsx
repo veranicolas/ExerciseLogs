@@ -38,8 +38,8 @@ const ExerciseForm = ({navigation}:any) =>{
             const finalData = data
             finalData.area = selectedValue
             finalData.userId = id
-            console.log(finalData)
-            await createExerciseLog(finalData)
+            const response = await createExerciseLog(finalData)
+            console.log(response)
             setPickerError(false)
             toast.show("Exercise log added!", {
                 type: "success",

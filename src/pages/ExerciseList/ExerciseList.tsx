@@ -5,12 +5,19 @@ import { useSelector } from "react-redux";
 import { View, StyleSheet, Text, FlatList} from "react-native";
 import { getAllExercisesFromUser } from "../../services/exercises";
 import { useState } from "react";
+import dayjs from 'dayjs'
+import dayOfYear from 'dayjs/plugin/dayOfYear'
+import { parseDayOfTheYear } from "../../utils/date";
 
 const ExerciseItem = ({item}:any) =>{
+
+    const lastUpdated = parseDayOfTheYear(item.updatedAt)
 
     return(
         <View style={{height:100, width:300, alignSelf:'center', borderWidth:1, borderColor:'grey', borderRadius:12, padding:40, marginBottom:10}}>
             <Text>{item.name}</Text>
+            <Text>{item.area}</Text>
+            <Text>{lastUpdated}</Text>
         </View>
     )
 }
