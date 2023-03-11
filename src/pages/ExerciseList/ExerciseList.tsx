@@ -6,13 +6,14 @@ import { View, StyleSheet, Text, FlatList} from "react-native";
 import { getAllExercisesFromUser } from "../../services/exercises";
 import { useState } from "react";
 import { parseDayOfTheYear } from "../../utils/date";
+import { CustomPicker } from "../../components/CustomPicker";
 
 const ExerciseItem = ({item}:any) =>{
 
     const lastUpdated = parseDayOfTheYear(item.updatedAt)
 
     return(
-        <View style={styles.listItem}>
+        <View style={[styles.listItem, styles.boxShadow]}>
             <Text style={[styles.itemText, {fontWeight:'bold'}]}>{item.name}</Text>
             <Text style={[styles.itemText]}>{item.area}</Text>
             <Text style={[styles.itemText]}>{lastUpdated}</Text>
@@ -26,6 +27,7 @@ const ExerciseList = () =>{
 
     const { id } = useSelector((state:any)=> state.user.value)
     const [exercisesData, setExercisesData] = useState([])
+    const [filter, setFilter] = useState('')
 
     // TODO Add the filtering buttons for sorting the data. Most likely will be sorted locally in the client, 
     //      but I will check if affects the performance enough to make the backend do it
@@ -42,10 +44,10 @@ const ExerciseList = () =>{
 
     return(
         <View style={styles.mainContainer}>
-            {/* <View style={{borderWidth:1, borderColor:'grey', height:'10%', width:300, marginBottom:20}}>
-                <Text>This will be the sorting filters</Text>
-            </View> */}
-            <View style={{height:'80%'}}>
+            <View style={{height:'18%', width:300, marginBottom:20, borderBottomWidth:1, borderBottomColor:'lightgrey'}}>
+                <CustomPicker selectedValue={filter} setSelectedValue={setFilter} label="Filter" style={{borderWidth:0}} />
+            </View>
+            <View style={{height:'60%'}}>
                 <FlatList
                     data={exercisesData}
                     renderItem={({item}:any)=>
@@ -73,14 +75,23 @@ const styles = StyleSheet.create({
         height:100, 
         width:300, 
         alignSelf:'center', 
-        borderWidth:1, 
-        borderColor:'grey', 
-        borderRadius:12, 
+        borderWidth:0, 
         padding:20, 
         marginBottom:10
     },
     itemText:{
         color:'black'
+    },
+    boxShadow:{
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 1.62,
+
+        elevation: 2,
     }
 })
 

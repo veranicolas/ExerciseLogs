@@ -3,12 +3,12 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import { Picker } from "@react-native-picker/picker"
 
-const CustomPicker = ({selectedValue, setSelectedValue, label, error}:any) =>{
+const CustomPicker = ({selectedValue, setSelectedValue, label, error, style}:any) =>{
 
     // make the items values be passed by props so that the component becomes reutilizable
 
     return(
-        <View style={error ? [styles.picker, {borderColor:'red'}] : styles.picker}>
+        <View style={error ? [styles.picker, {borderColor:'red'}] : [styles.picker, style]}>
             <Text>{label}</Text>
             <Picker
                 selectedValue={selectedValue}
