@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 import { View, StyleSheet, Text, FlatList} from "react-native";
 import { getAllExercisesFromUser } from "../../services/exercises";
 import { useState } from "react";
-import dayjs from 'dayjs'
-import dayOfYear from 'dayjs/plugin/dayOfYear'
 import { parseDayOfTheYear } from "../../utils/date";
 
 const ExerciseItem = ({item}:any) =>{
@@ -14,10 +12,10 @@ const ExerciseItem = ({item}:any) =>{
     const lastUpdated = parseDayOfTheYear(item.updatedAt)
 
     return(
-        <View style={{height:100, width:300, alignSelf:'center', borderWidth:1, borderColor:'grey', borderRadius:12, padding:40, marginBottom:10}}>
-            <Text>{item.name}</Text>
-            <Text>{item.area}</Text>
-            <Text>{lastUpdated}</Text>
+        <View style={styles.listItem}>
+            <Text style={[styles.itemText, {fontWeight:'bold'}]}>{item.name}</Text>
+            <Text style={[styles.itemText]}>{item.area}</Text>
+            <Text style={[styles.itemText]}>{lastUpdated}</Text>
         </View>
     )
 }
@@ -44,9 +42,9 @@ const ExerciseList = () =>{
 
     return(
         <View style={styles.mainContainer}>
-            <View style={{borderWidth:1, borderColor:'grey', height:'10%', width:300, marginBottom:20}}>
+            {/* <View style={{borderWidth:1, borderColor:'grey', height:'10%', width:300, marginBottom:20}}>
                 <Text>This will be the sorting filters</Text>
-            </View>
+            </View> */}
             <View style={{height:'80%'}}>
                 <FlatList
                     data={exercisesData}
@@ -70,7 +68,20 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         justifyContent:'flex-start', 
         alignItems:'center',
-      }
+    },
+    listItem:{
+        height:100, 
+        width:300, 
+        alignSelf:'center', 
+        borderWidth:1, 
+        borderColor:'grey', 
+        borderRadius:12, 
+        padding:20, 
+        marginBottom:10
+    },
+    itemText:{
+        color:'black'
+    }
 })
 
 export { ExerciseList }
