@@ -2,24 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { View, StyleSheet, Text, FlatList} from "react-native";
+import { View, StyleSheet, FlatList} from "react-native";
 import { getAllExercisesFromUser } from "../../services/exercises";
 import { useState } from "react";
-import { parseDayOfTheYear } from "../../utils/date";
 import { CustomPicker } from "../../components/CustomPicker";
 
-const ExerciseItem = ({item}:any) =>{
-
-    const lastUpdated = parseDayOfTheYear(item.updatedAt)
-
-    return(
-        <View style={[styles.listItem, styles.boxShadow]}>
-            <Text style={[styles.itemText, {fontWeight:'bold'}]}>{item.name}</Text>
-            <Text style={[styles.itemText]}>{item.area}</Text>
-            <Text style={[styles.itemText]}>{lastUpdated}</Text>
-        </View>
-    )
-}
+import { ExerciseItem } from "./ExerciseItem";
 
 const ExerciseList = () =>{
 
@@ -28,9 +16,6 @@ const ExerciseList = () =>{
     const { id } = useSelector((state:any)=> state.user.value)
     const [exercisesData, setExercisesData] = useState([])
     const [filter, setFilter] = useState('')
-
-    // TODO Add the filtering buttons for sorting the data. Most likely will be sorted locally in the client, 
-    //      but I will check if affects the performance enough to make the backend do it
 
     useEffect(()=>{
         const getData = async () =>{
