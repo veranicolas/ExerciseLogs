@@ -36,7 +36,7 @@ const ExerciseList = () =>{
                 <FlatList
                     data={exercisesData}
                     renderItem={({item}:any)=>
-                        <ExerciseItem item={item}/>
+                        filter === 'placeholder' || filter === '' || filter === item.area ? <ExerciseItem item={item}/> : null    
                     }
                     keyExtractor={(item, index)=> { return (Math.random()).toString()}}
                 />
