@@ -17,10 +17,10 @@ const CustomPicker = ({selectedValue, setSelectedValue, label, error, style}:any
                 }
                 mode="dropdown"
             >
-                <Picker.Item style={{color:'grey'}} label="Type of exercise" value="placeholder" />
-                <Picker.Item label="Upper" value="upper" />
-                <Picker.Item label="Middle" value="middle" />
-                <Picker.Item label="Lower" value="lower" />
+                <Picker.Item style={{color:'grey'}} label="Tipo de ejercicio" value="placeholder" />
+                <Picker.Item label="Alto" value="upper" />
+                <Picker.Item label="Medio" value="middle" />
+                <Picker.Item label="Bajo" value="lower" />
             </Picker>
         </View>
     )   

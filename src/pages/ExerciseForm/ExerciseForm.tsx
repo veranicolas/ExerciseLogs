@@ -41,7 +41,7 @@ const ExerciseForm = ({navigation}:any) =>{
             const response = await createExerciseLog(finalData)
             console.log(response)
             setPickerError(false)
-            toast.show("Exercise log added!", {
+            toast.show("Ejercicio agregado!", {
                 type: "success",
                 placement: "bottom",
                 duration: 4000,
@@ -62,7 +62,7 @@ const ExerciseForm = ({navigation}:any) =>{
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
-                    placeholder='Exercise'
+                    placeholder='Ejercicio'
                     style={errors.name ? styles.inputErrors : styles.input}
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -79,7 +79,7 @@ const ExerciseForm = ({navigation}:any) =>{
                 render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                     keyboardType='numeric'
-                    placeholder='Reps'
+                    placeholder='Repeticiones'
                     style={errors.reps ? styles.inputErrors : styles.input}
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -96,7 +96,7 @@ const ExerciseForm = ({navigation}:any) =>{
                 render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                     keyboardType='numeric'
-                    placeholder='Amount'
+                    placeholder='Peso'
                     style={errors.value ? styles.inputErrors : styles.input}
                     onBlur={onBlur}
                     onChangeText={onChange}

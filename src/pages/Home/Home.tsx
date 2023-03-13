@@ -24,10 +24,10 @@ const Home = ({navigation, user}:any) =>{
     <View style={{flex:1, padding:StatusBar.currentHeight, backgroundColor:'white', justifyContent:'flex-start'}}>
         <Header navigation={navigation} user={user}/>
         <View style={{padding:20, height:300, justifyContent:'space-between'}}>
-          <Text style={{fontSize:58, fontWeight:'bold', color:'black'}}>Hello!</Text>
-          <Text style={{color:'black', marginBottom:30}}>This is the homepage</Text>
-          <CustomButton title="Add exercise log" handlePress={handleNavigationExerciseForm}/>
-          <CustomButton title="View all exercises" handlePress={handleExerciseListNavigation} />
+          <Text style={{fontSize:58, fontWeight:'bold', color:'black'}}>Hola!</Text>
+          <Text style={{color:'black', marginBottom:30}}>Que no decaiga maquina agricola</Text>
+          <CustomButton title="Agregar ejercicio" handlePress={handleNavigationExerciseForm}/>
+          <CustomButton title="Mostrar todos los ejercicios" handlePress={handleExerciseListNavigation} />
         </View>
         
         <StatusBar translucent backgroundColor='transparent' barStyle={'dark-content'}/>

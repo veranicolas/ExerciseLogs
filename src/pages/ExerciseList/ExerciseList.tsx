@@ -30,7 +30,7 @@ const ExerciseList = () =>{
     return(
         <View style={styles.mainContainer}>
             <View style={{height:'18%', width:300, marginBottom:20, borderBottomWidth:1, borderBottomColor:'lightgrey'}}>
-                <CustomPicker selectedValue={filter} setSelectedValue={setFilter} label="Filter" style={{borderWidth:0}} />
+                <CustomPicker selectedValue={filter} setSelectedValue={setFilter} label="Filtro" style={{borderWidth:0}} />
             </View>
             <View style={{height:'60%'}}>
                 <FlatList
