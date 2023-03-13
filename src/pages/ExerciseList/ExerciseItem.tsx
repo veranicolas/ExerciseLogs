@@ -3,15 +3,17 @@ import React from "react";
 import { View, StyleSheet, Text} from "react-native";
 import { parseDayOfTheYear } from "../../utils/date";
 
+import { capitalizeFirstLetter } from '../../utils/text'
+
 const ExerciseItem = ({item}:any) =>{
 
     const lastUpdated = parseDayOfTheYear(item.updatedAt)
 
     return(
         <View style={[styles.listItem, styles.boxShadow]}>
-            <Text style={[styles.itemText, {fontWeight:'bold'}]}>{item.name}</Text>
-            <Text style={[styles.itemText]}>{item.area}</Text>
-            <Text style={[styles.itemText]}>{lastUpdated}</Text>
+            <Text style={[styles.itemText, {fontWeight:'bold'}]}>{capitalizeFirstLetter(item.name)}</Text>
+            <Text style={[styles.itemText]}>{capitalizeFirstLetter(item.area)}</Text>
+            <Text style={[styles.itemText]}>Last entry: {lastUpdated}</Text>
         </View>
     )
 }
