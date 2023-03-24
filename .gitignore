@@ -36,6 +36,8 @@ local.properties
 
 .env
 
+/android/app/data.json
+
 
 # node.js
 #

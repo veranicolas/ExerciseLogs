@@ -1,30 +1,38 @@
 import React, { useEffect } from 'react';
-import { StatusBar, StyleSheet, Text, View, NativeModules} from 'react-native';
-import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin'
+import { StatusBar, StyleSheet, Text, View, NativeModules, TextInput } from 'react-native';
 import { LoginProps } from '../../types/NavigationTypes';
+
+import { useForm, Controller } from 'react-hook-form';
+import { CustomButton } from '../../components/CustomButton';
 
 const Login = ({navigation}:LoginProps) =>{
 
   const locale = NativeModules.I18nManager.localeIdentifier // Add this line in the beggining to set the global language of the app
 
-  useEffect(()=>{
-    const isSignedIn = async () => {
-      const response = await GoogleSignin.isSignedIn();
-      if(response){
-        navigation.navigate('Home')
-      } else {
-        console.log('Not logged in')
-      }
-    };
+  const { control, handleSubmit, formState: { errors }, reset } = useForm({
+    defaultValues: {
+      email:'',
+      password:''
+    }
+  });
 
-    isSignedIn()
-  },[])
+  // useEffect(()=>{
+  //   const isSignedIn = async () => {
+  //     const response = await GoogleSignin.isSignedIn();
+  //     if(response){
+  //       navigation.navigate('Home')
+  //     } else {
+  //       console.log('Not logged in')
+  //     }
+  //   };
 
-  const signIn = async () =>{
+  //   isSignedIn()
+  // },[])
+
+  const handleSignIn = async (data:any) =>{
     try{
-      await GoogleSignin.hasPlayServices()
-      await GoogleSignin.signIn()
-      navigation.navigate('Home')
+      console.log(data)
+      // navigation.navigate('Home')
     } catch(error){
       console.log(error)
     }
@@ -36,7 +44,40 @@ const Login = ({navigation}:LoginProps) =>{
       <View style={styles.welcomeBox}>
         <Text style={styles.welcomeTitle}>Welcome to Exercise Logs</Text>
         <Text style={{color:'black', marginBottom:20}}>Start tracking your lift records today!</Text>
-        <GoogleSigninButton onPress={signIn} size={GoogleSigninButton.Size.Standard} color={GoogleSigninButton.Color.Dark}/>
+        <Controller
+                control={control}
+                rules={{
+                    required: true,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                    placeholder='Email'
+                    style={errors.email ? styles.inputErrors : styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                />
+                )}
+                name="email"
+            />
+            <Controller
+                control={control}
+                rules={{
+                    required: true,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                    secureTextEntry
+                    placeholder='Password'
+                    style={errors.password ? styles.inputErrors : styles.input}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value.toString()}
+                />
+                )}
+                name="password"
+            />
+            <CustomButton title="Submit" handlePress={handleSubmit(handleSignIn)}/>
       </View>
       <StatusBar translucent backgroundColor='transparent'/>
     </View>
@@ -65,6 +106,8 @@ const styles = StyleSheet.create({
     fontWeight:'700',
     marginBottom:15
   },
+  input:{borderColor:'grey', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10, color:'black'},
+  inputErrors:{borderColor:'red', borderWidth:1, borderRadius:8, marginVertical:10, paddingHorizontal:10, color:'black'},
 });
 
 export { Login }

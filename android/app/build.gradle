@@ -101,7 +101,11 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
+
+    def jsonFile = file('data.json')
+    def parsedJson = new groovy.json.JsonSlurper().parseText(jsonFile.text)
 
     splits {
         abi {
@@ -118,6 +122,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('exercise-logs.keystore')
+            storePassword parsedJson.storePassword
+            keyAlias parsedJson.keyAlias
+            keyPassword parsedJson.keyPassword
+        }
     }
     buildTypes {
         debug {
@@ -126,7 +136,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -154,6 +164,8 @@ dependencies {
     implementation("com.facebook.react:react-android")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+
+    implementation 'com.android.support:multidex:2.0.1'
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
