@@ -22,13 +22,13 @@ const styles = StyleSheet.create({
         width:'85%', 
         height:45, 
         borderRadius:10, 
-        backgroundColor:'#E5FCF5'
+        backgroundColor:'black'
     },
     buttonText:{
         textAlignVertical:'center', 
         textAlign:'center', 
         height:40,
-        color:'black',
+        color:'white',
         fontWeight:'bold'
     }
 })

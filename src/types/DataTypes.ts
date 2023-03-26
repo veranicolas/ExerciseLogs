@@ -1,13 +1,24 @@
 
-type GoogleUserInfo = {
-    email: string,
-    id: string,
-    givenName: string,
-    familyName: string,
-    photo: string, // url
-    name: string // full name
+export type User = {
+    name:      string;
+    lastName:  string;
+    email:     string;
+    password:  string;
+    country:   string;
+    weight:    number;
+    photo:     string;
+    language:  string;
+    _id:       string;
+    createdAt: Date;
+    updatedAt: Date;
+    __v:       number;
 }
 
-export type {
-    GoogleUserInfo
+export type RegisterUserForm = {
+    name:      string;
+    lastName:  string;
+    email:     string;
+    password:  string;
+    country:   string;
+    weight:    number;
 }
