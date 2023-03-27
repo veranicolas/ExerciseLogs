@@ -3,7 +3,6 @@ export type User = {
     name:      string;
     lastName:  string;
     email:     string;
-    password:  string;
     country:   string;
     weight:    number;
     photo:     string;
@@ -11,7 +10,6 @@ export type User = {
     _id:       string;
     createdAt: Date;
     updatedAt: Date;
-    __v:       number;
 }
 
 export type RegisterUserForm = {

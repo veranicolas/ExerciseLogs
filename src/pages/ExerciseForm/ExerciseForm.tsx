@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 
 const ExerciseForm = ({navigation}:any) =>{
 
-    const { id } = useSelector((state:any)=> state.user.value)
+    const { _id } = useSelector((state:any)=> state.user)
     const [selectedValue, setSelectedValue] = useState('placeholder')
     const [pickerError, setPickerError] = useState(false)
     const toast = useToast()
@@ -37,7 +37,7 @@ const ExerciseForm = ({navigation}:any) =>{
         } else {
             const finalData = data
             finalData.area = selectedValue
-            finalData.userId = id
+            finalData.userId = _id
             const response = await createExerciseLog(finalData)
             console.log(response)
             setPickerError(false)

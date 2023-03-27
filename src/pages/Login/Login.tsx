@@ -5,12 +5,15 @@ import { LoginProps } from '../../types/NavigationTypes';
 import { useForm, Controller } from 'react-hook-form';
 import { CustomButton } from '../../components/CustomButton';
 import { loginUser } from '../../services/user';
+import { setUserData } from '../../redux/slices/user';
 import { useToast } from 'react-native-toast-notifications';
+import { useDispatch } from 'react-redux';
 
 const Login = ({navigation}:LoginProps) =>{
 
   const locale = NativeModules.I18nManager.localeIdentifier // Add this line in the beggining to set the global language of the app
   const toast = useToast()
+  const dispatch = useDispatch()
 
   const { control, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: {
@@ -23,6 +26,8 @@ const Login = ({navigation}:LoginProps) =>{
     try{
       const response = await loginUser(data)
       console.log(response)
+      dispatch(setUserData(response.user))
+      navigation.navigate('Home')
     } catch(error){
       toast.show("Credenciales invalidas", {
         type: "danger",

@@ -1,13 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { User } from '../../types/DataTypes'
 
 const initialState = {
   value:{
     email: '',
-    id: '',
-    givenName: '',
-    familyName: '',
+    _id: '',
+    name: '',
+    lastName: '',
     photo: '', // url
-    name: '' ,
+    language: '' ,
+    country:'',
+    weight:0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }
 }
 
@@ -15,13 +20,13 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loginUser(state, action){
+    setUserData(state, action){
       state.value = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { loginUser } = userSlice.actions
+export const { setUserData } = userSlice.actions
 
 export default userSlice.reducer

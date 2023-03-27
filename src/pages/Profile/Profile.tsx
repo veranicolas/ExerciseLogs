@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 const Profile = ({navigation}:any) =>{
 
-    const { photo, name, email } = useSelector((state:any)=> state.user.value)
+    const { photo, name, lastName , email } = useSelector((state:any)=> state.user.value)
 
     const onPressLogout = async () => {
         try {
@@ -24,7 +24,7 @@ const Profile = ({navigation}:any) =>{
                     source={{uri:photo}} 
                     style={{height:170, width:170, borderRadius:100}}
                 />
-                <Text style={{fontSize:20, color:'black'}}>{name}</Text>
+                <Text style={{fontSize:20, color:'black'}}>{name + ' ' + lastName}</Text>
                 <Text style={{fontSize:14, color:'grey'}}>{email}</Text>
             </View>
             

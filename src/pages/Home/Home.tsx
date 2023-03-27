@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 import { HomeProps } from '../../types/NavigationTypes';
 import { Header } from '../../components/Header';
 import { CustomButton } from '../../components/CustomButton';
-
-import { loginUser } from '../../redux/slices/user';
 
 const Home = ({navigation, user}:any) =>{
 
@@ -37,19 +34,7 @@ const Home = ({navigation, user}:any) =>{
 
 const Homepage = ({navigation}:HomeProps) =>{
 
-  
-  const [user, setCurrentUser] = useState<any>(undefined)
-  const dispatch = useDispatch()
-
-  useEffect(()=>{
-    const getCurrentUser = async () => {
-      const currentUser = await GoogleSignin.getCurrentUser();
-      dispatch(loginUser(currentUser?.user))
-      setCurrentUser(currentUser)
-    };
-
-    getCurrentUser()
-  }, [])
+  const user = useSelector((state:any)=> state.user.value)
   
   return(
     <View style={styles.mainContainer}>

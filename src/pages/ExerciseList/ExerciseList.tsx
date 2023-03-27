@@ -13,14 +13,14 @@ const ExerciseList = () =>{
 
     // TODO Implement some slices for storing the data in the state. Also add some styles to it.
 
-    const { id } = useSelector((state:any)=> state.user.value)
+    const { _id } = useSelector((state:any)=> state.user)
     const [exercisesData, setExercisesData] = useState([])
     const [filter, setFilter] = useState('')
 
     useEffect(()=>{
         const getData = async () =>{
 
-            const response = await getAllExercisesFromUser(id)
+            const response = await getAllExercisesFromUser(_id)
             setExercisesData(response)
         }
         
