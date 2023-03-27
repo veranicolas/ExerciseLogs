@@ -1,5 +1,5 @@
 
-export type User = {
+type User = {
     name:      string;
     lastName:  string;
     email:     string;
@@ -12,7 +12,7 @@ export type User = {
     updatedAt: Date;
 }
 
-export type RegisterUserForm = {
+type RegisterUserForm = {
     name:      string;
     lastName:  string;
     email:     string;
@@ -20,3 +20,14 @@ export type RegisterUserForm = {
     country:   string;
     weight:    number;
 }
+
+type Exercise = {
+    name:string,
+    value:string,
+    reps:number,
+    area:string,
+    unit:string,
+    userId:number
+}
+
+export type { User, RegisterUserForm, Exercise}

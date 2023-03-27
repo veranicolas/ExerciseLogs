@@ -1,14 +1,6 @@
 import { API_URL } from '@env'
 import axios, { AxiosError } from 'axios'
-
-type Exercise = {
-    name:string,
-    value:string,
-    reps:number,
-    area:string,
-    unit:string,
-    userId:number
-}
+import { Exercise } from '../types/DataTypes'
 
 const deleteEntryFromUser = async () =>{
 
