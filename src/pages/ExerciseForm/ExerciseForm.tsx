@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, TextInput, Dimensions, StyleSheet } from 'react-native'
+import { View, TextInput, StyleSheet } from 'react-native'
 import { useForm, Controller } from 'react-hook-form'
 
 import { CustomButton } from '../../components/CustomButton'
@@ -38,8 +38,7 @@ const ExerciseForm = ({navigation}:any) =>{
             const finalData = data
             finalData.area = selectedValue
             finalData.userId = _id
-            const response = await createExerciseLog(finalData)
-            console.log(response)
+            await createExerciseLog(finalData)
             setPickerError(false)
             toast.show("Ejercicio agregado!", {
                 type: "success",

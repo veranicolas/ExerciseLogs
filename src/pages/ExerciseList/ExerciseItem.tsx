@@ -18,7 +18,7 @@ const ExerciseItem = ({item}:any) =>{
     }
 
     return(
-        <View style={[styles.listItem, styles.boxShadow]}>
+        <View style={[styles.listItem]}>
             <Text style={[styles.itemText, {fontWeight:'bold'}]}>{capitalizeFirstLetter(item.name)}</Text>
             <Text style={[styles.itemText]}>{translateArea()}</Text>
             <Text style={[styles.itemText]}>Ultimo registro: {lastUpdated}</Text>
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
         height:100, 
         width:300, 
         alignSelf:'center', 
-        borderWidth:0, 
+        borderWidth:1, 
+        borderColor:'lightgrey',
+        borderRadius:8,
         padding:20, 
         marginBottom:10
     },
