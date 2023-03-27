@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 
 const ExerciseForm = ({navigation}:any) =>{
 
-    const { _id } = useSelector((state:any)=> state.user)
+    const { _id } = useSelector((state:any)=> state.user.value)
     const [selectedValue, setSelectedValue] = useState('placeholder')
     const [pickerError, setPickerError] = useState(false)
     const toast = useToast()

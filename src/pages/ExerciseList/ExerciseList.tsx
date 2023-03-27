@@ -13,7 +13,7 @@ const ExerciseList = () =>{
 
     // TODO Implement some slices for storing the data in the state. Also add some styles to it.
 
-    const { _id } = useSelector((state:any)=> state.user)
+    const { _id } = useSelector((state:any)=> state.user.value)
     const [exercisesData, setExercisesData] = useState([])
     const [filter, setFilter] = useState('')
 
