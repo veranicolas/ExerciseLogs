@@ -3,24 +3,25 @@ import React from "react";
 import { TextInput, StyleSheet } from "react-native"
 import { Controller } from "react-hook-form"
 
-const CustomInput = ({control, errors}:any) =>{
+const CustomInput = ({control, placeholder, name, rules = {}, isPassword, isNumeric}:any) =>{
 
     return(
         <Controller
           control={control}
-          rules={{
-              required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
+          rules={rules}
+          render={({ field: { onChange, onBlur, value }, fieldState: {error} }) => (
           <TextInput
-              placeholder='Email'
-              style={errors.email ? styles.inputErrors : styles.input}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
+            keyboardType={isNumeric ? 'numeric' : 'default'}
+            placeholder={placeholder}
+            style={error ? styles.inputErrors : styles.input}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value.toString()}
+            placeholderTextColor={'grey'}
+            secureTextEntry={isPassword}
           />
           )}
-          name="email"
+          name={name}
         />
     )
 }

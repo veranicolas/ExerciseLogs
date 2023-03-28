@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StatusBar, StyleSheet, Text, View, NativeModules, TextInput } from 'react-native';
 import { LoginProps } from '../../types/NavigationTypes';
 
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { CustomButton } from '../../components/CustomButton';
 import { loginUser } from '../../services/user';
 import { setUserData } from '../../redux/slices/user';
 import { useToast } from 'react-native-toast-notifications';
 import { useDispatch } from 'react-redux';
-import { API_URL } from '@env';
+import { CustomInput } from '../../components/CustomInput';
 
 const Login = ({navigation}:LoginProps) =>{
 
@@ -25,6 +25,7 @@ const Login = ({navigation}:LoginProps) =>{
 
   const handleSignIn = async (data:any) =>{
     try{
+      console.log(data)
       const response = await loginUser(data)
       console.log(response)
       dispatch(setUserData(response.user))
@@ -45,41 +46,8 @@ const Login = ({navigation}:LoginProps) =>{
       <View style={styles.welcomeBox}>
         <Text style={styles.welcomeTitle}>Welcome to Exercise Logs</Text>
         <Text style={{color:'black', marginBottom:20}}>Start tracking your lift records today!</Text>
-        <Controller
-          control={control}
-          rules={{
-              required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-              placeholder='Email'
-              style={errors.email ? styles.inputErrors : styles.input}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              placeholderTextColor={'black'}
-          />
-          )}
-          name="email"
-        />
-        <Controller
-            control={control}
-            rules={{
-                required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-                secureTextEntry
-                placeholder='Password'
-                style={errors.password ? styles.inputErrors : styles.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value.toString()}
-                placeholderTextColor={'black'}
-            />
-            )}
-            name="password"
-        />
+        <CustomInput control={control} rules={{required: true}} name="email" placeholder="Email" />
+        <CustomInput control={control} rules={{required: true}} name="password" placeholder="Password" isPassword={true} />
         <CustomButton title="Submit" handlePress={handleSubmit(handleSignIn)}/>
       </View>
       <StatusBar translucent backgroundColor='transparent' barStyle={'dark-content'}/>

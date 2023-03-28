@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { View, StyleSheet, FlatList} from "react-native";
+import { View, StyleSheet, FlatList, Text} from "react-native";
 import { getAllExercisesFromUser } from "../../services/exercises";
 import { useState } from "react";
 import { CustomPicker } from "../../components/CustomPicker";
@@ -21,6 +21,7 @@ const ExerciseList = () =>{
         const getData = async () =>{
 
             const response = await getAllExercisesFromUser(_id)
+            console.log(response)
             setExercisesData(response)
         }
         
@@ -33,13 +34,18 @@ const ExerciseList = () =>{
                 <CustomPicker selectedValue={filter} setSelectedValue={setFilter} label="Filtro" style={{borderWidth:0}} />
             </View>
             <View style={{height:'60%'}}>
-                <FlatList
-                    data={exercisesData}
-                    renderItem={({item}:any)=>
-                        filter === 'placeholder' || filter === '' || filter === item.area ? <ExerciseItem item={item}/> : null    
-                    }
-                    keyExtractor={(item, index)=> { return (Math.random()).toString()}}
-                />
+                {
+                    exercisesData === undefined ? 
+                    <Text style={{color:'black', fontSize:20, marginTop:30}}>No exercises found</Text> 
+                    : 
+                    <FlatList
+                        data={exercisesData}
+                        renderItem={({item}:any)=>
+                            filter === 'placeholder' || filter === '' || filter === item.area ? <ExerciseItem item={item}/> : null    
+                        }
+                        keyExtractor={(item, index)=> { return (Math.random()).toString()}}
+                    />
+                }
             </View>
             
         </View>
