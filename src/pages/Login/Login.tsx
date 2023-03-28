@@ -8,6 +8,7 @@ import { loginUser } from '../../services/user';
 import { setUserData } from '../../redux/slices/user';
 import { useToast } from 'react-native-toast-notifications';
 import { useDispatch } from 'react-redux';
+import { API_URL } from '@env';
 
 const Login = ({navigation}:LoginProps) =>{
 
@@ -29,7 +30,7 @@ const Login = ({navigation}:LoginProps) =>{
       dispatch(setUserData(response.user))
       navigation.navigate('Home')
     } catch(error){
-      toast.show("Credenciales invalidas", {
+      toast.show(`Credenciales invalidas`, {
         type: "danger",
         placement: "bottom",
         duration: 4000,
@@ -56,6 +57,7 @@ const Login = ({navigation}:LoginProps) =>{
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
+              placeholderTextColor={'black'}
           />
           )}
           name="email"
@@ -73,6 +75,7 @@ const Login = ({navigation}:LoginProps) =>{
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value.toString()}
+                placeholderTextColor={'black'}
             />
             )}
             name="password"

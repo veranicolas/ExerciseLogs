@@ -5,9 +5,10 @@ import { RegisterUserForm } from '../types/DataTypes'
 const loginUser = async (credentials:any) =>{
     
     try{
-        const response = await axios.post(`${API_URL}user/login`, credentials)
+        const response = await axios.post(`${API_URL}/user/login`, credentials)
         return response.data
     } catch(error:AxiosError | any){
+        console.log(error)
         throw new Error(error)
     }
 }
@@ -15,7 +16,7 @@ const loginUser = async (credentials:any) =>{
 const registerUser = async (data:RegisterUserForm) =>{
 
     try{
-        const response = await axios.post(`${API_URL}user`, data)
+        const response = await axios.post(`${API_URL}/user`, data)
         return response.data
     } catch(error){
         console.log(error)

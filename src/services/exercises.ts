@@ -10,7 +10,7 @@ const deleteEntryFromUser = async () =>{
 const createExerciseLog = async (data:Exercise) =>{
     
     try{
-        const response = await axios.post(`${API_URL}exercise`, data)
+        const response = await axios.post(`${API_URL}/exercise`, data)
         return response.status
     } catch(error:AxiosError | any){
         return error
@@ -20,7 +20,7 @@ const createExerciseLog = async (data:Exercise) =>{
 const getAllExercisesFromUser = async (userID:string) =>{
 
     try{
-        const response = await axios.get(`${API_URL}exercise/${userID}`)
+        const response = await axios.get(`${API_URL}/exercise/${userID}`)
         return response.data.exercises
     } catch(error){
         console.log(error)
